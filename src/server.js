@@ -19,6 +19,7 @@ app.get("/getProducts", (req,res)=>{
     res.send(
         (productService.getAll().then(result=>console.log(result)))
     )
+    //res.json(productService)
 })
 
 app.get("/productRandom", (req,res)=>{
