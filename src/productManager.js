@@ -1,6 +1,8 @@
 const FileSystem = require('fs');
 
-const pathToFile = '../files/productos.json'
+//const pathToFile = '../files/productos.json';
+
+const pathToFile = '../files/products.txt'
 
 class productManager{
     save = async (product) =>{
