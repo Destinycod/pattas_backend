@@ -17,12 +17,12 @@ app.get("/", (req,res)=>{
 
 app.get("/getProducts", (req,res)=>{
     res.send(
-        (productService.getAll())
+        (productService.getAll().then(result=>console.log(result)))
     )
 })
 
 app.get("/productRandom", (req,res)=>{
     res.send(
-        Math.floor(Math.random())
+        productService.getById(Math.floor(Math.random())+1).then(result=>console.log(result))
     )
 })
