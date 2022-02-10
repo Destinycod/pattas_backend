@@ -1,27 +1,27 @@
-let pets;
-fetch('/pets').then(result=>result.json()).then(json=>{
-    pets = json.payload;
-    let container = document.getElementById('pet-container');
-    pets.forEach(pet=>{
+let products;
+fetch('/products').then(result=>result.json()).then(json=>{
+    products = json.payload;
+    let container = document.getElementById('product-container');
+    products.forEach(products=>{
         let card = document.createElement('div');
-        card.setAttribute('class','pet-card');
-        let name = document.createElement('p');
-        name.setAttribute('class','pet-text');
-        name.innerHTML=pet.name;
-        let specie = document.createElement('p');
-        specie.setAttribute('class','pet-text');
-        specie.innerHTML = pet.specie;
+        card.setAttribute('class','product-card');
+        let title = document.createElement('p');
+        title.setAttribute('class','product-text');
+        title.innerHTML=products.title;
+        let price = document.createElement('p');
+        price.setAttribute('class','product-text');
+        price.innerHTML = products.price;
         let img = document.createElement('img');
-        img.src=pet.thumbnail;
-        card.append(name);
-        card.append(specie);
+        img.src=products.thumbnail;
+        card.append(title);
+        card.append(price);
         card.append(img);
         container.append(card);
     })
 })
 
 
-let form = document.getElementById('petForm');
+let form = document.getElementById('productForm');
 const handleSubmit = (evt,form,route)=>{
     evt.preventDefault();
     let formData = new FormData(form);
@@ -31,4 +31,4 @@ const handleSubmit = (evt,form,route)=>{
     }).then(result=>result.json()).then(json=>console.log(json))
     form.reset();
 }
-form.addEventListener('submit',(e)=>handleSubmit(e,e.target,'/pets'))
+form.addEventListener('submit',(e)=>handleSubmit(e,e.target,'/api/products'))
