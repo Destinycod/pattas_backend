@@ -1,29 +1,14 @@
 const express=require("express");
+const productsRouter = require('./routes/products');
 
 const app = express();
+app.use(express.urlencoded({extended:true}))
+app.use(express.json());
+app.use('/products',productsRouter);
+app.use(express.static(__dirname+'/public'))  //dirname -> un elemento que permite trabajar con una ruta absoluta
 
-const server = app.listen(8080,()=>{
+const PORT=8080;
+const server = app.listen(PORT,()=>{
     console.log("Listening");
 })
 
-
-const productManager = require ('./productManager.js');
-
-const productService = new productManager();
-
-app.get("/", (req,res)=>{
-    res.send('<h1>Inicio</h1>');
-})
-
-app.get("/getProducts", (req,res)=>{
-    res.send(
-        (productService.getAll().then(result=>console.log(result)))
-    )
-    //res.json(productService)
-})
-
-app.get("/productRandom", (req,res)=>{
-    res.send(
-        productService.getById(Math.floor(Math.random())+1).then(result=>console.log(result))
-    )
-})
