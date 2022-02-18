@@ -6,9 +6,10 @@ const server = app.listen(PORT,()=>{
     console.log("Listening");
 })
 
+const pathToProducts = __dirname+'/files/products';
 
-app.engine('handlebars',(filePath,ObjectToReplace,callback)=>{
-    fs.readFile(filePath,(err,content)=>{
+app.engine('handlebars',(pathToProducts,ObjectToReplace,callback)=>{
+    fs.readFile(pathToProducts,(err,content)=>{
         if(err) return callback(new Error(err))
         const template = content.toString()
         .replace("^^titulo$$",''+ObjectToReplace.titulo)
@@ -20,9 +21,13 @@ app.engine('handlebars',(filePath,ObjectToReplace,callback)=>{
 app.set('views','./views')
 app.set('view engine','handlebars')
 
-app.get('/',(req,res)=>{
+app.get('/products',(req,res)=>{
     res.render('Productos',{
         titulo:"PLANTILLA PROPIA",
         mensaje:"Hola plantilla propia"
     })
+})
+
+app.post('/products',(req,rest)=>{
+    
 })
