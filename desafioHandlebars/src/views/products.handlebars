@@ -1,0 +1,12 @@
+<div>
+    {{#if products}}  <!--Si me llegaron productos-->
+        <ul>
+            {{#each products}}
+                <li>{{this.name}}</li>
+                <li>{{this.price}}</li>
+                <li>{{this.thumbnail}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+    <button>Volver</button>
+</div>
